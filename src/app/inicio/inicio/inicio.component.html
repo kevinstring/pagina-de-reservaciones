@@ -1,0 +1,23 @@
+<div class="container">
+  <div *ngFor="let usuario of usuarios">
+           <p>NOMBRE: {{usuario.nombre}}</p>
+            <p>APELLIDO: {{usuario.apellido}}</p>
+            <p>FECHA CREACION:{{usuario.fecha_creacion| date}}</p>
+  </div>
+</div>
+
+<div>
+  <form (ngSubmit)="ingresarAnuncio()" id="loginForm">
+    <label>Descripcion</label>
+    <input type="text" required [(ngModel)]="anuncio.descripcion" [ngModelOptions]="{standalone:true}" placeholder="descripcion	" >
+    <label>Imagen</label>
+    <input type="image" required [(ngModel)]="anuncio.imagen" [ngModelOptions]="{standalone:true}" placeholder="Imagen">
+    <label>Fecha de Inicio</label>
+    <input type="date" required [(ngModel)]="anuncio.fecha_inicio" [ngModelOptions]="{standalone:true}" placeholder="Fecha de inicio">
+    <label>Fecha de fin</label>
+    <input type="date" required [(ngModel)]="anuncio.fecha_fin" [ngModelOptions]="{standalone:true}" placeholder="Fecha de fin">
+   
+    <button type="submit">Ingresar</button>
+    
+    </form>
+</div>

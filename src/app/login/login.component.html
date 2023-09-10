@@ -1,0 +1,11 @@
+<div class="container">
+<form (ngSubmit)="entrar()" id="loginForm">
+<label>Correo</label>
+<input type="text" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone:true}" placeholder="Correo" >
+<label>Password</label>
+<input type="password" required [(ngModel)]="usuario.password" [ngModelOptions]="{standalone:true}" placeholder="Password">
+<button type="submit">Ingresar</button>
+<p *ngIf="invalidado">{{invalido}}</p>
+
+</form>
+</div>
