@@ -1,0 +1,71 @@
+.container{
+    width: auto;
+    height: auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px
+}
+
+.divAnuncios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.itemsUpdate{
+    width: 300px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-around;
+
+}
+
+.tarjetaAnuncio{
+
+    width: 300px;
+    min-height: 39vh; /* Ancho de la tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar contenido que se desborde */
+    margin: 20px; /* Margen alrededor de la tarjeta */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.divAnuncioContenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+  
+    width: 10px;
+    
+    height: 10px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #cc0000; /* Color de fondo del botón en el hover */
+  }
+ #loginForm{
+    margin-top: 30px;
+    min-width: 300px;
+
+    background-color: rgb(186, 186, 221);
+ }
+  
+  
+  
+  
+  

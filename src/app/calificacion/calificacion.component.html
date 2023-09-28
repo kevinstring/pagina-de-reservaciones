@@ -1,0 +1,27 @@
+<div class="divContainer">
+<form>
+    <label>nota</label>
+    <input type="number" placeholder="Nota"  required [(ngModel)]="calificacion.nota" [ngModelOptions]="{standalone:true}">
+    <label>nombre</label>
+    <input type="text"  required [(ngModel)]="calificacion.nombre" [ngModelOptions]="{standalone:true}" placeholder="Nombre"> 
+    <label>
+        fecha Calificacion
+    </label>
+    <input type="date"  required [(ngModel)]="calificacion.fechaCalificacion" [ngModelOptions]="{standalone:true}" placeholder="Fecha">
+    <label >
+        numero Examen
+     
+    </label>
+    <input   required [(ngModel)]="calificacion.noExamen" [ngModelOptions]="{standalone:true}"
+    type="number">
+    <button (click)="ingresar()">Ingresar</button>
+</form>
+
+
+
+<div class="tarjetaAnuncio" *ngFor="let i of verCalificacion">
+<p>NOTA: {{i.nota}}</p>
+<p>NOMBRE: {{i.nombre}}</p>
+<p>NUMERO EXAMEN: {{i.noExamen}}</p>
+</div>
+</div>

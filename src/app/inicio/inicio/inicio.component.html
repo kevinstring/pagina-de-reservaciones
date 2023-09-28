@@ -1,23 +1,48 @@
 <div class="container">
-  <div *ngFor="let usuario of usuarios">
-           <p>NOMBRE: {{usuario.nombre}}</p>
-            <p>APELLIDO: {{usuario.apellido}}</p>
-            <p>FECHA CREACION:{{usuario.fecha_creacion| date}}</p>
-  </div>
+  <form  id="loginForm">
+    <label>Descripcion</label>
+    <input type="text" required [(ngModel)]="anuncio.texto" [ngModelOptions]="{standalone:true}" placeholder="descripcion	" >
+    <label>Imagen</label>
+    <input type="file" required (change)="onFileSelected($event)" [(ngModel)]="anuncio.imagen" [ngModelOptions]="{standalone:true}" placeholder="Imagen">
+    <label>Fecha de Inicio</label>
+    <input type="date" required [(ngModel)]="anuncio.fechaInicio" [ngModelOptions]="{standalone:true}" placeholder="Fecha de inicio">
+    <label>Fecha de fin</label>
+    <input type="date" required [(ngModel)]="anuncio.fechaFin" [ngModelOptions]="{standalone:true}" placeholder="Fecha de fin">
+    <img [src]="imagenF" *ngIf="imageUrl">
+    <button type="submit" (click)="uploadFile()">Ingresar</button>
+  </form>         
+
+
+    <div class="divAnuncios">
+    <div class="tarjetaAnuncio" *ngFor="let anuncio of verAnuncio ;trackBy: trackByAnuncio">
+      <div class="divAnuncioContenedor">
+    
+        <img src="{{anuncio.imagen}}" alt="imagen">
+        <div *ngIf="editarVal">
+      <input type="file" placeholder="imagen" >
+      <input type="text" placeholder="texto">
+      <input type="date" placeholder="fecha inicio">
+      <input type="date" placeholder="fecha fin">
+    
+    </div>
+      <p>{{anuncio.texto}}</p>
+      <p>{{anuncio.fechaInicio | date}} </p>
+      <p>{{anuncio.fechaFin | date}}  </p>
+    </div>
+
+      <div class="itemsUpdate">
+      <i (click)="eliminarAnuncio(anuncio.idAnuncio)" class="fa-sharp fa-regular fa-trash-can"></i>
+    
+      <i class="fa-regular fa-pen-to-square" (click)="editar(anuncio.idAnuncio)" ></i>
+
+      </div></div>
+    </div>
+
+  
+    
+   
 </div>
 
 <div>
-  <form (ngSubmit)="ingresarAnuncio()" id="loginForm">
-    <label>Descripcion</label>
-    <input type="text" required [(ngModel)]="anuncio.descripcion" [ngModelOptions]="{standalone:true}" placeholder="descripcion	" >
-    <label>Imagen</label>
-    <input type="image" required [(ngModel)]="anuncio.imagen" [ngModelOptions]="{standalone:true}" placeholder="Imagen">
-    <label>Fecha de Inicio</label>
-    <input type="date" required [(ngModel)]="anuncio.fecha_inicio" [ngModelOptions]="{standalone:true}" placeholder="Fecha de inicio">
-    <label>Fecha de fin</label>
-    <input type="date" required [(ngModel)]="anuncio.fecha_fin" [ngModelOptions]="{standalone:true}" placeholder="Fecha de fin">
-   
-    <button type="submit">Ingresar</button>
-    
-    </form>
+  
 </div>

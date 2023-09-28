@@ -5,21 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio/inicio.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgxImageZoomModule } from 'ngx-image-zoom';
 import {HttpClientModule,HttpHeaders} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { CalificacionComponent } from './calificacion/calificacion.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    LoginComponent
+    LoginComponent,
+    CalificacionComponent,
+    BienvenidaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxImageZoomModule,
     HttpClientModule,
     FormsModule
   ],

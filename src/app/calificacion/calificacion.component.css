@@ -1,0 +1,22 @@
+
+.tarjetaAnuncio{
+
+    width: 300px;
+    min-height: 39vh; /* Ancho de la tarjeta */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Ocultar contenido que se desborde */
+    margin: 20px; /* Margen alrededor de la tarjeta */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.divContainer{
+    width: auto;
+    height: auto;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center     ;
+    gap:10px
+}
