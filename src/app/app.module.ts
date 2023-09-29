@@ -10,13 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
+import { LugaresComponent } from './lugares/lugares.component';
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     LoginComponent,
     CalificacionComponent,
-    BienvenidaComponent
+    BienvenidaComponent,
+    LugaresComponent
   ],
   imports: [
     BrowserModule,

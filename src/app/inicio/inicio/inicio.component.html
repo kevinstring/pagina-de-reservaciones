@@ -1,15 +1,26 @@
 <div class="container">
   <form  id="loginForm">
+    <div class="mb-3">
     <label>Descripcion</label>
     <input type="text" required [(ngModel)]="anuncio.texto" [ngModelOptions]="{standalone:true}" placeholder="descripcion	" >
+    </div>
+    <div class="mb-3">
     <label>Imagen</label>
     <input type="file" required (change)="onFileSelected($event)" [(ngModel)]="anuncio.imagen" [ngModelOptions]="{standalone:true}" placeholder="Imagen">
+  </div>
+    <div class="mb-3">
     <label>Fecha de Inicio</label>
     <input type="date" required [(ngModel)]="anuncio.fechaInicio" [ngModelOptions]="{standalone:true}" placeholder="Fecha de inicio">
+  </div>
+    <div class="mb-3">
     <label>Fecha de fin</label>
+    
     <input type="date" required [(ngModel)]="anuncio.fechaFin" [ngModelOptions]="{standalone:true}" placeholder="Fecha de fin">
+  </div>
+    <div class="mb-3">
     <img [src]="imagenF" *ngIf="imageUrl">
     <button type="submit" (click)="uploadFile()">Ingresar</button>
+  </div>
   </form>         
 
 
