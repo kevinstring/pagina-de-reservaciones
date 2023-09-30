@@ -32,7 +32,11 @@ entrar(){
 
 darBienvenida(usuario:any){
   if(usuario){
+      
+      localStorage.setItem("usuario",JSON.stringify(usuario))
       location.href=("/inicio")
+      
+
   }else{
     this.invalidado=true;
    this.invalido="Correo o password incorrectos"

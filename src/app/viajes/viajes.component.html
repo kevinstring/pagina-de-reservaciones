@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form [formGroup]="formulario" #form (ngSubmit)="guardarLugar()">
+      
+          <div class="form-group">
+            <label for="fechaPartida">Fecha de Partida</label>
+            <input formControlName="fechaPartida" type="date" class="form-control" id="fechaPartida">
+          </div>
+  
+          <div class="form-group">
+            <label for="fechaRegreso">Fecha de Regreso</label>
+            <input formControlName="fechaRegreso" type="date" class="form-control" id="fechaRegreso">
+          </div>
+  
+          <div class="form-group">
+            <label for="cupo">Cupo</label>
+            <input formControlName="cupo" type="number" class="form-control" id="cupo" placeholder="Ingrese el cupo">
+          </div>
+  
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"
+              placeholder="Ingrese una descripción"></textarea>
+          </div>
+  
+          <div class="form-group">
+            <label for="idEstado">Estado</label>
+            <input formControlName="idEstado" type="text" class="form-control" id="idEstado" placeholder="Ingrese el estado">
+          </div>
+  
+          <div class="form-group">
+            <label for="origen">Origen</label>
+            <select formControlName="origen" class="form-control" id="origen">
+              <option *ngFor="let lugar of lugares" [value]="lugar.idLugar">{{ lugar.nombre }}</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="destino">Destino</label>
+            <select formControlName="destino" class="form-control" id="destino">
+              <option *ngFor="let lugar of lugares" [value]="lugar.idLugar">{{ lugar.nombre }}</option>
+            </select>
+          </div>
+          
+ 
+          <button  type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

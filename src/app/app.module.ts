@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { CalificacionComponent } from './calificacion/calificacion.component';
 import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 import { LugaresComponent } from './lugares/lugares.component';
+import { ViajesComponent } from './viajes/viajes.component';
+import { EstadosPipe } from './estados.pipe';
+import { MiPerfilComponent } from './mi-perfil/mi-perfil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,10 @@ import { LugaresComponent } from './lugares/lugares.component';
     LoginComponent,
     CalificacionComponent,
     BienvenidaComponent,
-    LugaresComponent
+    LugaresComponent,
+    ViajesComponent,
+    EstadosPipe,
+    MiPerfilComponent
   ],
   imports: [
     BrowserModule,

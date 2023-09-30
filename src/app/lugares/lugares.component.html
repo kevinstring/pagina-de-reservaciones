@@ -1,1 +1,61 @@
-<p>lugares works!</p>
+<div class="container">
+    <div class="row justify-content-center ">
+      <div class="col-md-6">
+        <form [formGroup]="formulario" #form (ngSubmit)="guardarLugar()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese nombre de lugar">
+          </div>
+  
+          <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"
+              placeholder="Ingrese una descripción"></textarea>
+          </div>
+  
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+  
+          <div class="form-group">
+         
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="customFile" accept="image/*">
+              <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
+            </div>
+  
+            <img class="img-thumbnail mt-3" *ngIf="imageUrl" [src]="imageUrl" alt="Imagen">
+          </div>
+  
+          <button (click)="guardarLugar()" type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Recorre el arreglo de lugares y crea una tarjeta para cada uno -->
+        <div class="col-md-4" *ngFor="let lugar of lugares">
+          <div class="card mb-4">
+            <!-- Imagen del lugar -->
+            <img [src]="lugar.imagen" class="card-img-top" alt="Imagen del lugar">
+            <div class="card-body">
+              <!-- Nombre del lugar -->
+              <h5 class="card-title">{{ lugar.nombre }}</h5>
+              <!-- Descripción del lugar -->
+              <p class="card-text">{{ lugar.descripcion }}</p>
+            </div>
+            <!-- Botones de acciones -->
+            <div class="card-footer text-center">
+              <div class="itemsUpdate">
+                <i (click)="eliminarLugar(lugar.idLugar)" class="fa-sharp fa-regular fa-trash-can"></i>
+                <i class="fa-regular fa-pen-to-square" (click)="editar(lugar.idLugar)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
