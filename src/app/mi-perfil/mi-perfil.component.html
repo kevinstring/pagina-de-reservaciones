@@ -1,1 +1,22 @@
-<p>mi-perfil works!</p>
+<div class="container text-center">
+    <h1>Mi Perfil</h1>
+    <div class="card info">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img width="300px" class="img-thumbnail mt-3" *ngIf="usuario.foto" [src]="usuario.foto" alt="Imagen">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-left">Información de Usuario</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Correo:</b> {{usuario.correo}}</li>
+                        <li class="list-group-item"><b>Nombre:</b> {{usuario.nombre}} {{usuario.apellido}}</li>
+                        <li class="list-group-item"><b>Telefono:</b> {{usuario.telefono}}</li>
+                        <li class="list-group-item"><b>Password:</b> {{usuario.password}}</li>
+                        <li class="list-group-item"><b>Estado:</b> {{usuario.estado}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

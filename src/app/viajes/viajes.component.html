@@ -1,52 +1,107 @@
 <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <form [formGroup]="formulario" #form (ngSubmit)="guardarLugar()">
-      
-          <div class="form-group">
-            <label for="fechaPartida">Fecha de Partida</label>
-            <input formControlName="fechaPartida" type="date" class="form-control" id="fechaPartida">
-          </div>
-  
-          <div class="form-group">
-            <label for="fechaRegreso">Fecha de Regreso</label>
-            <input formControlName="fechaRegreso" type="date" class="form-control" id="fechaRegreso">
-          </div>
-  
-          <div class="form-group">
-            <label for="cupo">Cupo</label>
-            <input formControlName="cupo" type="number" class="form-control" id="cupo" placeholder="Ingrese el cupo">
-          </div>
-  
-          <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"
-              placeholder="Ingrese una descripción"></textarea>
-          </div>
-  
-          <div class="form-group">
-            <label for="idEstado">Estado</label>
-            <input formControlName="idEstado" type="text" class="form-control" id="idEstado" placeholder="Ingrese el estado">
-          </div>
-  
-          <div class="form-group">
-            <label for="origen">Origen</label>
-            <select formControlName="origen" class="form-control" id="origen">
-              <option *ngFor="let lugar of lugares" [value]="lugar.idLugar">{{ lugar.nombre }}</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="destino">Destino</label>
-            <select formControlName="destino" class="form-control" id="destino">
-              <option *ngFor="let lugar of lugares" [value]="lugar.idLugar">{{ lugar.nombre }}</option>
-            </select>
-          </div>
-          
- 
-          <button  type="submit" class="btn btn-primary">Ingresar</button>
-        </form>
-      </div>
-    </div>
+  <!-- Button trigger modal -->
+<button type="button" (click)="openModal()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Crear nuevo viaje
+</button>
+
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Origen</th>
+          <th>Destino</th>
+          <th>Cupo</th>
+          <th>Descripción</th>
+          <th>Fecha de Partida</th>
+          <th>Fecha de Regreso</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let viaje of viajes">
+          <td>{{ viaje.origen |viajes:lugares}}</td>
+          <td>{{ viaje.destino |viajes:lugares }}</td>
+          <td>{{ viaje.cupo }}</td>
+          <td>{{ viaje.descripcion }}</td>
+          <td>{{ viaje.fechaPartida }}</td>
+          <td>{{ viaje.fechaRegreso }}</td>
+          <td>{{viaje.idEstado  |estados:estados}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   
+
+<!-- Modal -->
+<div class="modal animated fade" id="modalViaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CREAR VIAJE</h5>
+        <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div >
+            <form [formGroup]="formulario" #form (ngSubmit)="guardarLugar()" class="d-flex flex-wrap">
+              <div class="form-group">
+                <label for="fechaPartida">Fecha de Partida</label>
+                <input formControlName="fechaPartida" type="date" class="form-control" id="fechaPartida">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="fechaRegreso">Fecha de Regreso</label>
+                <input formControlName="fechaRegreso" type="date" class="form-control" id="fechaRegreso">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="cupo">Cupo</label>
+                <input formControlName="cupo" type="number" class="form-control" id="cupo" placeholder="Ingrese el cupo">
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="descripcion">Descripción</label>
+                <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"
+                  placeholder="Ingrese una descripción"></textarea>
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="idEstado">Estado</label>
+                <select formControlName="idEstado" class="form-control" id="idEstado">
+                  <option *ngFor="let estado of estados" [value]="estado.idEstado">{{ estado.valor }}</option>
+                </select>
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="origen">Origen</label>
+                <select formControlName="origen" class="form-control" id="origen">
+                  <option *ngFor="let lugar of lugares" [value]="lugar.idLugar">{{ lugar.nombre }}</option>
+                </select>
+              </div>
+            
+              <div class="form-group col-md-6">
+                <label for="destino">Destino</label>
+                <select formControlName="destino" class="form-control" id="destino">
+                  <option *ngFor="let lugar of lugares" [value]="lugar.idLugar">{{ lugar.nombre }}</option>
+                </select>
+              </div>
+            
+              <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Ingresar</button>
+              </div>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  
+</div>
+

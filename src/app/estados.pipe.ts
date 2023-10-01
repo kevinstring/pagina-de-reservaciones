@@ -6,9 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class EstadosPipe implements PipeTransform {
 
   transform(value: number, estados:any[]): unknown {
+    
     let e : any;
     for(e of estados){
-      if(e.id==value){
+      if(e.idEstado==value){
         return e.valor;
       }
     }

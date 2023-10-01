@@ -1,61 +1,77 @@
 <div class="container">
-    <div class="row justify-content-center ">
-      <div class="col-md-6">
-        <form [formGroup]="formulario" #form (ngSubmit)="guardarLugar()">
-          <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese nombre de lugar">
-          </div>
-  
-          <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3"
-              placeholder="Ingrese una descripción"></textarea>
-          </div>
-  
-          <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-  
-          <div class="form-group">
-         
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="customFile" accept="image/*">
-              <label class="custom-file-label" for="customFile">Seleccionar imagen</label>
-            </div>
-  
-            <img class="img-thumbnail mt-3" *ngIf="imageUrl" [src]="imageUrl" alt="Imagen">
-          </div>
-  
-          <button (click)="guardarLugar()" type="submit" class="btn btn-primary">Ingresar</button>
-        </form>
-      </div>
-    </div>
-  
-    <div class="container mt-4">
-      <div class="row">
-        <!-- Recorre el arreglo de lugares y crea una tarjeta para cada uno -->
-        <div class="col-md-4" *ngFor="let lugar of lugares">
-          <div class="card mb-4">
-            <!-- Imagen del lugar -->
-            <img [src]="lugar.imagen" class="card-img-top" alt="Imagen del lugar">
-            <div class="card-body">
-              <!-- Nombre del lugar -->
-              <h5 class="card-title">{{ lugar.nombre }}</h5>
-              <!-- Descripción del lugar -->
-              <p class="card-text">{{ lugar.descripcion }}</p>
-            </div>
-            <!-- Botones de acciones -->
-            <div class="card-footer text-center">
-              <div class="itemsUpdate">
-                <i (click)="eliminarLugar(lugar.idLugar)" class="fa-sharp fa-regular fa-trash-can"></i>
-                <i class="fa-regular fa-pen-to-square" (click)="editar(lugar.idLugar)"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="row">
+ 
+    <div >
+      <button type="button" (click)="openModal()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Ingresar nuevo Lugar
+       </button>
+       
+      <!-- Tabla de lugares -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let lugar of lugares">
+            <td><img [src]="lugar.imagen" alt="Imagen del lugar" width="100"></td>
+            <td ><b>{{ lugar.nombre }}</b></td>
+            <td>{{ lugar.descripcion }}</td>
+            <td class="text-center">
+              <i class="fa fa-pencil" (click)="editarLugar(lugar)"></i>
+              <i class="fa fa-trash" (click)="eliminarLugar(lugar)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
+
+<!-- Modal -->
+<div class="modal fade" id="modalLugares" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" (click)="closeModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div >
+          <!-- Formulario para ingresar lugares -->
+          <form class="row" [formGroup]="formulario" #form (ngSubmit)="guardarLugar()">
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input formControlName="nombre" type="text" class="form-control" id="nombre" placeholder="Ingrese nombre de lugar">
+            </div>
+    
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea formControlName="descripcion" class="form-control" id="descripcion" rows="3" placeholder="Ingrese una descripción"></textarea>
+            </div>
+    
+     
+    
+            <div class="mb-3">
+              <label class="form-label">Seleccionar imagen</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="customFile" accept="image/*">
+                <label class="custom-file-label" for="customFile">Elegir archivo</label>
+              </div>
+              <img class="img-thumbnail mt-3" *ngIf="imageUrl" [src]="imageUrl" alt="Imagen">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Ingresar</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>

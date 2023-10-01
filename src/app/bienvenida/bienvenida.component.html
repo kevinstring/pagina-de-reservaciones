@@ -11,35 +11,58 @@
             <input type="text" class="form-control" [(ngModel)]="usuario.nombre" 
             [ngModelOptions]="{standalone:true}"
             placeholder="Nombre"
-            required>
+            >
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Apellido: *</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.apellido" 
+            [ngModelOptions]="{standalone:true}"
+            placeholder="Apellido"
+            >
           </div>
 
         <div class="mb-3">
             <label class="form-label">Email: *</label>
-            <input type="email" class="form-control" [(ngModel)]="usuario.email" 
+            <input type="email" class="form-control" [(ngModel)]="usuario.correo" 
             [ngModelOptions]="{standalone:true}"
             placeholder="Email"
-            required>
+            >
           </div>
-        
+          <div class="mb-3">
+            <label class="form-label">Telefono: *</label>
+            <input type="text" class="form-control" [(ngModel)]="usuario.telefono" 
+            [ngModelOptions]="{standalone:true}"
+            placeholder="Telefono"
+            >
+          </div>
           <div class="mb-3">
             <label class="form-label">Password: *</label>
             <input type="password"  class="form-control"
             [(ngModel)]="usuario.password"  
             [ngModelOptions]="{standalone:true}"
             placeholder="Password"
-            required>
+            >
         </div>
+           <div class="mb-3">
+              <label class="form-label">Seleccionar imagen</label>
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" (change)="onFileSelected($event)" id="customFile" accept="image/*">
+                <label class="custom-file-label" for="customFile">Elegir archivo</label>
+              </div>
+              <img class="img-thumbnail mt-3" *ngIf="imageUrl" [src]="imageUrl" alt="Imagen">
+            </div>
+    
 
         <div class="mb-3">
             <label class="form-label">Estado: *</label>
-        <select class="form-select" aria-label="Seleccione"
+        <select class="form-select"
         [(ngModel)]="usuario.estado"  
         [ngModelOptions]="{standalone:true}"
+        (change)="llamarEstado($event)" 
         required
         >
-            <option selected>Seleccione</option>
-            <option *ngFor="let estado of estados" value="{{estado.idestado}}">{{estado.valor}}</option>
+            
+            <option *ngFor="let estado of estados" value="{{estado.valor}}">{{estado.valor}}</option>
           </select>
         </div>
     
@@ -68,7 +91,7 @@
             </td>
             <td>{{usuario.nombre}}</td>
             <td>{{usuario.fechaCreacion}}</td>
-            <td>{{usuario.email}}</td>
+            <td>{{usuario.correo}}</td>
             <td>{{usuario.estado}}</td>
           </tr>
           

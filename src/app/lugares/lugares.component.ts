@@ -1,54 +1,89 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServiciosService } from '../servicios.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { MatTableDataSource } from '@angular/material/table';
 
+declare var window: any;
 @Component({
   selector: 'app-lugares',
   templateUrl: './lugares.component.html',
   styleUrls: ['./lugares.component.css']
 })
 export class LugaresComponent implements OnInit{
-  ngOnInit(): void {
-    this.getLugares();
-  }
   lugares: any[] = [];
   formulario: FormGroup;
   imageUrl: string | ArrayBuffer | null = null;
   selectedFile: File | null = null;
+  formModal:any
 
-  constructor(private servicio: ServiciosService) {
-    this.formulario = new FormGroup({
+
+  datos: any[] = []; // Debes definir el tipo de datos adecuado
+
+  dataSource = new MatTableDataSource<any>(this.datos);
+
+
+  ngOnInit(): void {
+    this.getLugares();
+    this.formModal= new window.bootstrap.Modal(document.getElementById('modalLugares'), {
+    })
+  }
+
+  constructor(private servicio: ServiciosService,private domSanitizer: DomSanitizer) {
+         this.formulario = new FormGroup({
       nombre: new FormControl('', Validators.required),
       descripcion: new FormControl('', Validators.required),
       imagen: new FormControl('', Validators.required)
     });
   }
-  onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const blob: Blob = new Blob([new Uint8Array(reader.result as ArrayBuffer)], { type: file.type });
-        this.blobToBase64(blob);
-      };
-      reader.readAsArrayBuffer(file);
+
+  openModal(){
+
+    this.formModal.show();  }
+  closeModal(){
+      
+      this.formModal.hide();  }
+    onFileSelected(event: any) {
+      const file = event.target.files[0];
+      this.selectedFile = file;
+      this.extraerBase64(this.selectedFile).then((imagen: any) => {
+        this.imageUrl = imagen.base64;
+        console.log(this.imageUrl);
+      });
+      
+
     }
-  }
-  blobToBase64(blob: Blob) {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const base64String: string | ArrayBuffer | null = e.target?.result;
-      if (typeof base64String === 'string') {
-        this.imageUrl = base64String; // Asigna la cadena Base64 a tu variable de imagen
+
+    extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
+      try {
+        const unsafeImg = window.URL.createObjectURL($event);
+        const image = this.domSanitizer.bypassSecurityTrustUrl(unsafeImg);
+        const reader = new FileReader();
+        reader.readAsDataURL($event);
+        reader.onload = () => {
+          resolve({
+            base64: reader.result
+          });
+        };
+        reader.onerror = error => {
+          resolve({
+            base64: ''
+          });
+        };
+      } catch (e) {
+        return null;
       }
-    };
-    reader.readAsDataURL(blob);
-  }
+    }
+    );
+
+
     
 
   guardarLugar() {
   
     const form =this.formulario.value
+    form.imagen = this.imageUrl;
+    console.log(form);
  
 
     this.servicio.postLugares(form).subscribe((data: any) => {
@@ -59,15 +94,23 @@ export class LugaresComponent implements OnInit{
   getLugares() {
     this.servicio.getLugares().subscribe((data: any) => {
       this.lugares = data;
+      this.dataSource.data = this.lugares; // Actualiza la fuente de datos de la tabla
     });
   }
 
 eliminarLugar(id){
-    console.log(id) 
+  this.servicio.deleteLugar(id.idLugar).subscribe((data: any) => {
+    console.log(data);
+    this.getLugares();
+    // Realizar cualquier acción adicional después de guardar
+  }
+  );
+
 }
 
-editar(id){
-  console.log(id)
+editarLugar(id){
+  
+
 }
 
 }
