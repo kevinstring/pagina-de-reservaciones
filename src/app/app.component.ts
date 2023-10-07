@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   }
   cerrarSesion(){
     localStorage.removeItem("usuario");
-    location.href=("/")
+    location.reload()
   }
   sesionIniciada:boolean=false;
  

@@ -34,7 +34,7 @@ darBienvenida(usuario:any){
   if(usuario){
       
       localStorage.setItem("usuario",JSON.stringify(usuario))
-      location.href=("/inicio")
+      location.href=("/miPerfil")
       
 
   }else{

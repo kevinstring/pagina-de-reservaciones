@@ -1,11 +1,17 @@
 <div class="container">
-<form (ngSubmit)="entrar()" id="loginForm">
-<label>Correo</label>
-<input type="text" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone:true}" placeholder="Correo" >
-<label>Password</label>
-<input type="password" required [(ngModel)]="usuario.password" [ngModelOptions]="{standalone:true}" placeholder="Password">
-<button type="submit">Ingresar</button>
-<p *ngIf="invalidado">{{invalido}}</p>
-
-</form>
-</div>
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+      <form (ngSubmit)="entrar()" id="loginForm">
+        <div class="form-group">
+          <label for="correo">Correo</label>
+          <input type="text" class="form-control" required [(ngModel)]="usuario.correo" [ngModelOptions]="{standalone:true}" placeholder="Correo">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" required [(ngModel)]="usuario.password" [ngModelOptions]="{standalone:true}" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
+        <p *ngIf="invalidado" class="text-danger">{{invalido}}</p>
+      </form>
+    </div>
+  </div>
+  

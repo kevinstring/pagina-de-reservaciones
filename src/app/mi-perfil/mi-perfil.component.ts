@@ -14,6 +14,8 @@ constructor(){
     console.log(this.usuario)
   }
 
+  
+
 
 
 }

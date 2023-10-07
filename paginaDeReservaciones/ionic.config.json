@@ -1,7 +1,0 @@
-{
-  "name": "paginaDeReservaciones",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}

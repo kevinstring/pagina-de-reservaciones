@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InicioComponent } from './inicio/inicio/inicio.component';
@@ -37,7 +37,7 @@ import { ViajesPipe } from './viajes.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
-    MatTableModule
+    MatTableModule,
 
 
   ],

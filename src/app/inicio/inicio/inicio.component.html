@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <form  id="loginForm">
     <div class="mb-3">
     <label>Descripcion</label>
@@ -6,7 +6,7 @@
     </div>
     <div class="mb-3">
     <label>Imagen</label>
-    <input type="file" required (change)="onFileSelected($event)" [(ngModel)]="anuncio.imagen" [ngModelOptions]="{standalone:true}" placeholder="Imagen">
+    <input type="file" required (change)="onFileSelected($event)"  placeholder="Imagen">
   </div>
     <div class="mb-3">
     <label>Fecha de Inicio</label>
@@ -19,35 +19,41 @@
   </div>
     <div class="mb-3">
     <img [src]="imagenF" *ngIf="imageUrl">
-    <button type="submit" (click)="uploadFile()">Ingresar</button>
+    <button type="submit" (click)="servicioAgregarAnuncio(anuncio)">Ingresar</button>
   </div>
   </form>         
 
-
-    <div class="divAnuncios">
-    <div class="tarjetaAnuncio" *ngFor="let anuncio of verAnuncio ;trackBy: trackByAnuncio">
-      <div class="divAnuncioContenedor">
-    
-        <img src="{{anuncio.imagen}}" alt="imagen">
-        <div *ngIf="editarVal">
-      <input type="file" placeholder="imagen" >
-      <input type="text" placeholder="texto">
-      <input type="date" placeholder="fecha inicio">
-      <input type="date" placeholder="fecha fin">
-    
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="divAnuncios">
+          <div class="tarjetaAnuncio card" *ngFor="let anuncio of verAnuncio; trackBy: trackByAnuncio">
+            <div class="divAnuncioContenedor">
+              <img class="rounded mx-auto d-block img-fluid img-sm" src="{{ anuncio.imagen }}" alt="imagen">
+              <div *ngIf="editarVal">
+                <input type="file" class="form-control" placeholder="imagen">
+                <input type="text" class="form-control" placeholder="texto">
+                <input type="date" class="form-control" placeholder="fecha inicio">
+                <input type="date" class="form-control" placeholder="fecha fin">
+              </div>
+              <p>{{ anuncio.texto }}</p>
+              <p>{{ anuncio.fechaInicio | date }}</p>
+              <p>{{ anuncio.fechaFin | date }}</p>
+            </div>
+            <div class="itemsUpdate">
+              <button class="btn btn-danger" (click)="eliminarAnuncio(anuncio.idAnuncio)">
+                <i class="fa fa-trash-can"></i>
+              </button>
+              <button class="btn btn-primary" (click)="editar(anuncio.idAnuncio)">
+                <i class="fa fa-pen-to-square"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-      <p>{{anuncio.texto}}</p>
-      <p>{{anuncio.fechaInicio | date}} </p>
-      <p>{{anuncio.fechaFin | date}}  </p>
-    </div>
-
-      <div class="itemsUpdate">
-      <i (click)="eliminarAnuncio(anuncio.idAnuncio)" class="fa-sharp fa-regular fa-trash-can"></i>
-    
-      <i class="fa-regular fa-pen-to-square" (click)="editar(anuncio.idAnuncio)" ></i>
-
-      </div></div>
-    </div>
+  </div>
+  
 
   
     
@@ -56,4 +62,4 @@
 
 <div>
   
-</div> -->
+</div>

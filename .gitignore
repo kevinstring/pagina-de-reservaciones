@@ -10,7 +10,9 @@
 /node_modules
 npm-debug.log
 yarn-error.log
-
+spec/*.spec.ts
+node_modules/
+dist/
 # IDEs and editors
 .idea/
 .project
@@ -40,3 +42,4 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+node_modules
