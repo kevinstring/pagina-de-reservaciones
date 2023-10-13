@@ -38,8 +38,6 @@ import { ViajesPipe } from './viajes.pipe';
     HttpClientModule,
     FormsModule,
     MatTableModule,
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
